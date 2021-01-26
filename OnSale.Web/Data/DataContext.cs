@@ -13,21 +13,36 @@ namespace OnSale.Web.Data
 
         }
 
-        /*
-         * To map the database
-         */
+        public DbSet<City> Cities { get; set; }
+
         public DbSet<Country> Countries { get; set; }
 
+        public DbSet<Department> Departments { get; set; }
+
         /*
-         * Additionally, create a index to handle duplicate names in the countries.
+         * Additionally, create a index to handle duplicate attributes.
          */
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
+            // Create a index for City
+            modelBuilder.Entity<City>()
+                .HasIndex(t => t.Name)
+                .IsUnique();            
+            
+            // Create a index for Country
             modelBuilder.Entity<Country>()
                 .HasIndex(t => t.Name)
                 .IsUnique();
+
+            // Create a index for Department
+            modelBuilder.Entity<Department>()
+                .HasIndex(t => t.Name)
+                .IsUnique();
+
+            
+
         }
     }
 }
