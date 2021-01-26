@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using OnSale.Web.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace OnSale.Web
 {
@@ -31,6 +33,11 @@ namespace OnSale.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            // Inyect database configuration
+            services.AddDbContext<DataContext>(cfg => 
+            {
+                cfg.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
