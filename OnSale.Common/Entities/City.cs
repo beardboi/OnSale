@@ -9,16 +9,12 @@ namespace OnSale.Common.Entities
 {
     public class City
     {
-        /*
-         * The Id of the City.
-         * Unique
-         */ 
+        /// <summary>
+        /// The id
+        /// </summary>
         [Key]
         public int Id { get; set; }
 
-        /*
-         * The name of the City
-         */
         [MaxLength(50)]
         [Required]
         public string Name { get; set; }
